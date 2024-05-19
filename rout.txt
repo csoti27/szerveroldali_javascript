@@ -1,0 +1,65 @@
+get / ->átirányít /novenyek -re
+
+renderMW
+
+getNovenyekMW
+saveNovenyMW
+getNovenyMW(novenyid)
+deleteNovenyMW
+
+getBotanikusokMW
+saveBotanikusMW
+getBotanikusMW(botanikusid)
+deleteBotanikusMW
+
+
+
+
+
+get /novenyek  -novenyek.html 
+    getNovenyekMW
+    renderMW(novenyek.html)
+
+get /botanikusok        -botanikusok.html
+    getBotanikusokMW
+    renderMW(botanikusok.html)
+
+get,post /novenyek/new       -ujNoveny.html
+    saveNovenyMW
+        if(typeof req.body.name ==='undefined'){
+            return next();
+        }
+
+    renderMW(ujNoveny.html)
+ 
+    
+
+get, post /botanikusok/new    -ujBotanikus
+    saveBotanikusMW
+        if(typeof req.body.name ==='undefined'){
+            return next();
+        }
+
+    renderMW(ujBotanikus.html)
+
+
+
+get, post /novenyek/edit/:novenyid       -ujNoveny.html
+    getNovenyMW(novenyid)           jelenlegi adatokat berakja a textboxokba
+    saveNovenyMW
+    renderMW(ujNoveny.html)
+
+get, post /botanikusok/edit/:botanikusid   -ujBotanikus
+    getBotanikusMW(botanikusid)           jelenlegi adatokat berakja a textboxokba
+    saveBotanikusMW
+    renderMW(ujBotanikus.html)
+
+get, post /novenyek/del/:novenyid
+    getNovenyMW(novenyid)           jelenlegi adatokat berakja a textboxokba
+    deleteNovenyMW
+    renderMW(ujNoveny.html)
+
+get, post /botanikusok/del/:botanikusid
+    getBotanikusMW(botanikusid)           jelenlegi adatokat berakja a textboxokba
+    deleteBotanikusMW
+    renderMW(ujBotanikus.html)
