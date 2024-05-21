@@ -9,15 +9,15 @@ module.exports = function (objectrepository) {
     const BotanikusModel = requireOption(objectrepository, 'BotanikusModel');
 
     return function (req, res, next) {
-        //lets find the user
-        BotanikusModel.find({}).then(results => {
-            res.locals.botanikusok = results;
-            return next();
-        }).catch(err => {
-            console.log(err);
-            return res.status(500).json({message: 'error'});
-        });
 
-    };
+      BotanikusModel.find({})
+          .then(botanikus => {
+              res.locals.botanikusok = botanikus;
+              return next();
+          }).catch(err => {
+          console.log(err);
+          return res.status(500).json({message: 'error'});
+      });
+  };
 
-};
+ };

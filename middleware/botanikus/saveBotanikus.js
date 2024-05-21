@@ -36,9 +36,9 @@ module.exports = function (objectrepository) {
         botanikus.elvesztettKesztyuk = elvesztettKesztyuk;
         botanikus.korabbiAllas = korabbiAllas;
 
-
         botanikus.save().then(() => {
             return res.redirect('/botanikusok');
+
         });
     };
 

@@ -34,14 +34,18 @@
                 <td class="tg-baqh"><%= noveny.viragIze %></td>
                 <td class="tg-baqh"><%= noveny.viragzasIdeje %></td>
                 <td class="text-right">
-                    <a td class="btn btn-sm btn-primary">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                </td>
-            </tr>
-        <% }); %>
-        </tbody>
-    </table>
-</div>
+                <a class="btn btn-primary" href="/novenyek/new" name="btnUjNoveny">Új</a>
+                <a class="btn btn-primary" href="/novenyek" name="btnDelNoveny">Törlés</a>
+              </td>
+              </tr>
+            <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <a class="btn btn-primary" href="/novenyek/new" name="btnUjNoveny">Új növény felvétele</a>
+            <a class="btn btn-primary" href="/botanikusok" name="btnBotanikusok">Botanikusok</a>
+        </div>
+    </div>
 </body>
 
 <!--%- include('footer') -%-->
