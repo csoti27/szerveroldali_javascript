@@ -1,20 +1,20 @@
-const renderMW = require('../middleware/common/render');
+const renderMW = require('./middleware/common/render');
 const express = require('express');
 
-const deleteBotanikus = require('../middleware/botanikus/deleteBotanikus')
-const getBotanikus = require('../middleware/botanikus/getBotanikus')
-const getBotanikusok = require('../middleware/botanikus/getBotanikusok')
-const saveBotanikus = require('../middleware/botanikus/saveBotanikus')
-const deleteNoveny = require('../middleware/noveny/deleteNoveny')
-const getNoveny = require('../middleware/noveny/getNoveny')
-const getNovenyek = require('../middleware/noveny/getNovenyek')
-const saveNoveny = require('../middleware/noveny/saveNoveny')
+const deleteBotanikus = require('./middleware/botanikus/deleteBotanikus')
+const getBotanikus = require('./middleware/botanikus/getBotanikus')
+const getBotanikusok = require('./middleware/botanikus/getBotanikusok')
+const saveBotanikus = require('./middleware/botanikus/saveBotanikus')
+const deleteNoveny = require('./middleware/noveny/deleteNoveny')
+const getNoveny = require('./middleware/noveny/getNoveny')
+const getNovenyek = require('./middleware/noveny/getNovenyek')
+const saveNoveny = require('./middleware/noveny/saveNoveny')
 
 const app = express();
 app.set('view engine', 'ejs');
 
-const BotanikusModel = require('../models/botanikus');
-const NovenyModel = require('../models/noveny');
+const BotanikusModel = require('./models/botanikus');
+const NovenyModel = require('./models/noveny');
 
 const objRepo = {
     BotanikusModel: BotanikusModel,
