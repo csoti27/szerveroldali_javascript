@@ -1,62 +1,65 @@
+const renderMW = require('../middleware/common/render');
 const express = require('express');
+
+const deleteBotanikus = require('../middleware/botanikus/deleteBotanikus')
+const getBotanikus = require('../middleware/botanikus/getBotanikus')
+const getBotanikusok = require('../middleware/botanikus/getBotanikusok')
+const saveBotanikus = require('../middleware/botanikus/saveBotanikus')
+const deleteNoveny = require('../middleware/noveny/deleteNoveny')
+const getNoveny = require('../middleware/noveny/getNoveny')
+const getNovenyek = require('../middleware/noveny/getNovenyek')
+const saveNoveny = require('../middleware/noveny/saveNoveny')
+
 const app = express();
-const port = 3000;
-
-var session = require('express-session');
-var bodyParser = require('body-parser');
-
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(express.static('static'));
+const BotanikusModel = require('../models/botanikus');
+const NovenyModel = require('../models/noveny');
 
-//require('./route/index')(app);
-/*
-app.use(
-  function(req, res, next){
-    res.locals.botanikusok=[
-      {nev: "Kert Elek", eletkor: "56", elvesztettKesztyuk: "200+", korabbiAllas: "buszsofőr"},
-      {nev: "Bot Attila", eletkor: "30", elvesztettKesztyuk: "7", korabbiAllas: "informatikus"},
-      {nev: "Tuti István", eletkor: "25", elvesztettKesztyuk: "15 (pár)", korabbiAllas: "cégvezető"},
-      {nev: "Vladimir Putin", eletkor: "70", elvesztettKesztyuk: "-2", korabbiAllas: "hentes"}
-    ]
-    res.locals.novenyek=[
-        {nev: "Leveletlen lóhere", botanikus: "Kert Elek", viragIze: "erősen sós", viragzasIdeje: "szeptember"},
-        {nev: "Türkiz szamóca", botanikus: "Bot Attila", viragIze: "nem szamóca", viragzasIdeje: "április"},
-        {nev: "Sarki egres", botanikus: "Tuti István", viragIze: "méz édes", viragzasIdeje: "december"},
-        {nev: "Rakoncátlan tavirózsa", botanikus: "Vladimir Putin", viragIze: "keserű", viragzasIdeje: "havonta"}
-    ]
-    
-  return next();
-  },
-  function(req, res, next){
-    res.render("novenyek", res.locals);
-  }
-)
-*/
-app.use(session({
-  secret: 'titok',
-}));
+const objRepo = {
+    BotanikusModel: BotanikusModel,
+    NovenyModel: NovenyModel
+};
+
+app.use('/novenyek/new',
+    saveNoveny(objRepo),
+    renderMW(objRepo, 'novenyNew'));
+
+app.use('/novenyek/edit/:novenyid',
+    getNoveny(objRepo),
+    saveNoveny(objRepo),
+    renderMW(objRepo, 'novenyNew'));
+
+app.get('/novenyek/del/:novenyid',
+    getNoveny(objRepo),
+    deleteNoveny(objRepo),
+    renderMW(objRepo, 'novenyek'));
+
+app.get('/novenyek',
+    getNovenyek(objRepo),
+    renderMW(objRepo, 'novenyek'));
 
 
-require('./route/index')(app);
-/*
-app.use(function (req, res, next) {
-  res.locals = {};
-  res.locals.error = [];
+app.use('/botanikusok/new',
+    saveBotanikus(objRepo),
+    renderMW(objRepo, 'botanikusNew'));
 
-  return next();
+app.use('/botanikusok/edit/:botanikusid',
+    getBotanikus(objRepo),
+    saveBotanikus(objRepo),
+    renderMW(objRepo, 'botanikusNew'));
+
+app.get('/botanikusok/del/:botanikusid',
+    getBotanikus(objRepo),
+    deleteBotanikus(objRepo),
+    renderMW(objRepo, 'botanikusok'));
+
+app.get('/botanikusok',
+    getBotanikusok(objRepo),
+    renderMW(objRepo, 'botanikusok'));
+
+app.listen(3000, () => {
+    console.log('Server started at http://localhost:3000');
 });
-*/
 
-app.use(function (err, req, res, next) {
-  res.status(500).send('Houston, we have a problem!');
-
-  //Flush out the stack to the console
-  console.error(err.stack);
-});
-
-app.listen(3000,()=>{
-    console.log('Server started at http://localhost:' + port+"/novenyek.html");
-});
+  
