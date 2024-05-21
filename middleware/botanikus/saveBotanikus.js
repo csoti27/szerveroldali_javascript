@@ -7,32 +7,39 @@
 
 const requireOption = require('../common/requireOption');
 
- module.exports = function (objectrepository) {
+module.exports = function (objectrepository) {
     const BotanikusModel = requireOption(objectrepository, 'BotanikusModel');
 
-    return function(req, res, next) {
+    return function (req, res, next) {
+
+        console.log(req.body);
         if (
             typeof req.body.nev === 'undefined' ||
             typeof req.body.eletkor === 'undefined' ||
             typeof req.body.elvesztettKesztyuk === 'undefined' ||
-            typeof req.body.korabbiAllas === 'undefined' 
+            typeof req.body.korabbiAllas === 'undefined'
 
         ) {
+            console.log('next');
             return next();
         }
 
-        if (typeof res.locals.botanikus === 'undefined') {
-            res.locals.botanikus = new BotanikusModel();
-        }
 
-        res.locals.botanikus.nev = req.body.nev;
-        res.locals.botanikus.eletkor = req.body.eletkor;
-        res.locals.botanikus.elvesztettKesztyuk = req.body.elvesztettKesztyuk;
-        res.locals.botanikus.korabbiAllas = req.body.korabbiAllas;
+        const nev = req.body.nev;
+        const eletkor = req.body.eletkor;
+        const elvesztettKesztyuk = req.body.elvesztettKesztyuk;
+        const korabbiAllas = req.body.korabbiAllas;
 
-        res.locals.botanikus.save().then(()=>
-            {return res.redirect('/botanikusok');
+        const botanikus = new BotanikusModel();
+        botanikus.nev = nev;
+        botanikus.eletkor = eletkor;
+        botanikus.elvesztettKesztyuk = elvesztettKesztyuk;
+        botanikus.korabbiAllas = korabbiAllas;
+
+        botanikus.save().then(() => {
+            return res.redirect('/botanikusok');
+
         });
     };
 
- };
+};

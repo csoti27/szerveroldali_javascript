@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Növény hozzáadása</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            body { padding-top: 50px; }
-            
-          </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Növény hozzáadása</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+    </style>
+</head>
 <body>
 
 <h1>Új növény felvétele</h1>
 
-<form action="/novenyek/new">
-  <label for="fnev">Név:</label>
-  <input type="text" id="nev" name="nev"><br><br>
-  <label for="lviragIze">Virág íze:</label>
-  <input type="text" id="viragIze" name="viragIze"><br><br>
-  
-  <label for="fviragzasIdeje">Virágzás ideje:</label>
-  <input type="text" id="viragzasIdeje" name="viragzasIdeje"><br><br>
-  <label for="fbotanikus">Botanikus:</label>
-  <input type="text" id="_botanikus" name="_botanikus"><br><br>
-  <input type="submit" value="Submit"/>
+<form method='post' action="/novenyek/new">
+    <label for="nev">Név:</label>
+    <input type="text" id="nev" name="nev"><br><br>
+    <label for="botanikus">Botanikus:</label>
+    <input type="text" id="botanikus" name="botanikus"><br><br>
+
+    <label for="viragIze">Virág íze:</label>
+    <input type="text" id="viragIze" name="viragIze"><br><br>
+    <label for="viragzasIdeje">Virágzás ideje:</label>
+    <input type="text" id="viragzasIdeje" name="viragzasIdeje"><br><br>
+
+    <input type="submit" value="Submit">
 </form>
 <div>
     <a class="btn btn-primary" href="/novenyek" name="btnBack">Vissza</a>
 </div>
-
-
 </body>
 </html>

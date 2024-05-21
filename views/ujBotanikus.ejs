@@ -1,28 +1,32 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Botanikus hozzáadása</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            body { padding-top: 50px; }
-            
-          </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Botanikus hozzáadása</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+    </style>
+</head>
 <body>
 
 <h1>Új botanikus felvétele</h1>
 
-<form action="/botanikusok/new">
-  <label for="fnev">Név:</label>
-  <input type="text" id="nev" name="nev"><br><br>
-  <label for="leletkor">Életkor:</label>
-  <input type="text" id="eletkor" name="eletkor"><br><br>
-  
-  <label for="fkesztyuk">Elvesztett kesztyűk száma::</label>
-  <input type="text" id="elvesztettKesztyuk" name="elvesztettKesztyuk"><br><br>
-  <label for="fallas">Korábbi állás:</label>
-  <input type="text" id="korabbiAllas" name="korabbiAllas"><br><br>
-  <input type="submit" value="Submit"/>
+<form method="post" action="/botanikusok/new">
+    <label for="nev">Név:</label>
+    <input type="text" id="nev" name="nev"><br><br>
+    <label for="eletkor">Életkor:</label>
+    <input type="text" id="eletkor" name="eletkor"><br><br>
+
+    <label for="elvesztettKesztyuk">Elvesztett kesztyűk:</label>
+    <input type="text" id="elvesztettKesztyuk" name="elvesztettKesztyuk"><br><br>
+    <label for="korabbiAllas">Korábbi Állás:</label>
+    <input type="text" id="korabbiAllas" name="korabbiAllas"><br><br>
+    <input type="submit" value="Submit">
+
 </form>
 </div>
 <div>

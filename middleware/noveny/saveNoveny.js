@@ -5,36 +5,33 @@
  * Ha van már ilyen ID-vel növény akkor átírja az adatait a bevitt adatokra
  */
 
- const requireOption = require('../common/requireOption');
+const requireOption = require('../common/requireOption');
 
- module.exports = function (objectrepository) {
+module.exports = function (objectrepository) {
     const NovenyModel = requireOption(objectrepository, 'NovenyModel');
 
-    return function(req, res, next) {
+    return function (req, res, next) {
+        console.log(req.body);
         if (
             typeof req.body.nev === 'undefined' ||
             typeof req.body.viragIze === 'undefined' ||
-            typeof req.body.viragzasIdeje === 'undefined' ||
-            typeof res.locals.botanikus === 'undefined'
+            typeof req.body.viragzasIdeje === 'undefined'
         ) {
             return next();
         }
 
-        if (typeof res.locals.botanikus === 'undefined') {
-            res.locals.botanikus = new NovenyModel();
-        }
+        const noveny = new NovenyModel();
 
-        res.locals.noveny.nev = req.body.nev;
-        res.locals.noveny.viragIze = req.body.viragIze;
-        res.locals.noveny.viragzasIdeje = req.body.viragzasIdeje;
-        res.locals.noveny._botanikus = res.locals.botanikus._id;
+        noveny.nev = req.body.nev;
+        noveny.viragIze = req.body.viragIze;
+        noveny.viragzasIdeje = req.body.viragzasIdeje;
+        // noveny._botanikus = res.locals.botanikus._id; // mindig undefined mert a res.locals üres
 
-        res.locals.noveny.save(err => {
-            if (err) {
-                return next(err);
-            }
-
+        noveny.save().then(() => {
             return res.redirect(`/novenyek`);
+        }).catch(err => {
+            console.log(err);
+            return res.status(500).json({ message: 'error' });
         });
     };
- };
+};

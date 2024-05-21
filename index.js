@@ -1,5 +1,7 @@
 const renderMW = require('./middleware/common/render');
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const deleteBotanikus = require('./middleware/botanikus/deleteBotanikus')
 const getBotanikus = require('./middleware/botanikus/getBotanikus')
@@ -13,8 +15,6 @@ const saveNoveny = require('./middleware/noveny/saveNoveny')
 const app = express();
 app.set('view engine', 'ejs');
 
-var bodyParser = require('body-parser');
-
 const BotanikusModel = require('./models/botanikus');
 const NovenyModel = require('./models/noveny');
 
@@ -24,9 +24,9 @@ const objRepo = {
 };
 
 app.use(bodyParser.json());
-// for parsing application/x-www-form-urlencoded
+
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 
 app.use('/novenyek/new',
