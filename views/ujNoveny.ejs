@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Növény hozzáadása</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            body { padding-top: 50px; }
-            
-          </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Növény hozzáadása</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+    </style>
+</head>
 <body>
 
 <h1>Új növény felvétele</h1>
 
-<form action="/action_page.php">
-  <label for="fname">Név:</label>
-  <input type="text" id="name" name="name"><br><br>
-  <label for="lname">Valami1:</label>
-  <input type="text" id="valami1" name="valami1"><br><br>
-  
-  <label for="fname">valami2:</label>
-  <input type="text" id="valami2" name="valami2"><br><br>
-  <label for="fname">valami3:</label>
-  <input type="text" id="valami3" name="valami3"><br><br>
+<form method='post' action="/novenyek/new">
+    <label for="nev">Név:</label>
+    <input type="text" id="nev" name="nev"><br><br>
+    <label for="botanikus">Botanikus:</label>
+    <input type="text" id="botanikus" name="botanikus"><br><br>
+
+    <label for="viragIze">Virág íze:</label>
+    <input type="text" id="viragIze" name="viragIze"><br><br>
+    <label for="viragzasIdeje">Virágzás ideje:</label>
+    <input type="text" id="viragzasIdeje" name="viragzasIdeje"><br><br>
+
+    <input type="submit" value="Submit">
 </form>
 </div>
-    <a class="btn btn-primary" href="/novenyek.html" name="btnUjNoveny">Új növény felvétele</a>
+<a class="btn btn-primary" href="/novenyek.html" name="btnUjNoveny">Új növény felvétele</a>
 <div>
-<div>
-    <a class="btn btn-primary" href="/novenyek.html" name="btnBack">Vissza</a>
-</div>
+    <div>
+        <a class="btn btn-primary" href="/novenyek.html" name="btnBack">Vissza</a>
+    </div>
 
 
 </body>
