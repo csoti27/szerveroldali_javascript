@@ -33,10 +33,18 @@
                 <td class="tg-baqh"><%= noveny.botanikus %></td>
                 <td class="tg-baqh"><%= noveny.viragIze %></td>
                 <td class="tg-baqh"><%= noveny.viragzasIdeje %></td>
+                <td class="text-right">
+                <a class="btn btn-primary" href="/novenyek/new" name="btnUjNoveny">Új</a>
+                <a class="btn btn-primary" href="/novenyek" name="btnDelNoveny">Törlés</a>
+              </td>
               </tr>
             <% }); %>
             </tbody>
           </table>
+        </div>
+        <a class="btn btn-primary" href="/novenyek/new" name="btnUjNoveny">Új növény felvétele</a>
+            <a class="btn btn-primary" href="/botanikusok" name="btnBotanikusok">Botanikusok</a>
+        </div>
     </div>
 </body>
 

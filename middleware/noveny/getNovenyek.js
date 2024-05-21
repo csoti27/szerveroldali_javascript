@@ -4,18 +4,17 @@
 
 const requireOption = require('../common/requireOption');
 
- module.exports = function (objectrepository) {
+module.exports = function (objectrepository) {
     const NovenyModel = requireOption(objectrepository, 'NovenyModel');
 
-    return function(req, res, next) {
-
-
+    return function (req, res, next) {
         NovenyModel.find({})
-        .then(noveny => {
-             res.locals.noveny = noveny
-            }).catch(err=>{
-                console.log(err);
-                return res.status(500).json({message:'error'});
-            });
+            .then(noveny => {
+                res.locals.novenyek = noveny;
+                return next();
+            }).catch(err => {
+            console.log(err);
+            return res.status(500).json({message: 'error'});
+        });
     };
- };
+};

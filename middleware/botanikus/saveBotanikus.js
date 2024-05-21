@@ -30,12 +30,8 @@ const requireOption = require('../common/requireOption');
         res.locals.botanikus.elvesztettKesztyuk = req.body.elvesztettKesztyuk;
         res.locals.botanikus.korabbiAllas = req.body.korabbiAllas;
 
-        res.locals.botanikus.save(err => {
-            if (err) {
-                return next(err);
-            }
-
-            return res.redirect('/botanikusok');
+        res.locals.botanikus.save().then(()=>
+            {return res.redirect('/botanikusok');
         });
     };
 
