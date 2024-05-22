@@ -16,7 +16,8 @@ module.exports = function (objectrepository) {
         if (
             typeof req.body.nev === 'undefined' ||
             typeof req.body.viragIze === 'undefined' ||
-            typeof req.body.viragzasIdeje === 'undefined'
+            typeof req.body.viragzasIdeje === 'undefined' ||
+            typeof req.body.botanikusNev ==='undefined'
         ) {
             return next();
         }
@@ -33,8 +34,12 @@ module.exports = function (objectrepository) {
         var botanikus = await findByAttribute(BotanikusModel,'nev',botanikusNev);
         if(!botanikus){
             botanikus = new BotanikusModel();
+            botanikus.nev = req.body.botanikus;
+            await botanikus.save();
         }
-        console.log(botanikus);
+        noveny._botanikus = botanikus._id;
+        noveny.botanikusNev = req.body.botanikusNev;
+        console.log(`Noveny:${noveny}`);
         noveny.save().then(() => {
             return res.redirect(`/novenyek`);
         }).catch(err => {

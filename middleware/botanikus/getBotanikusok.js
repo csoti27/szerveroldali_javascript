@@ -12,7 +12,7 @@ module.exports = function (objectrepository) {
 
       BotanikusModel.find({})
           .then(botanikus => {
-              res.locals.botanikusok = botanikus;
+              res.locals.botanikus = botanikus;
               return next();
           }).catch(err => {
           console.log(err);
