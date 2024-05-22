@@ -33,8 +33,9 @@
                 <td class="tg-baqh"><%= botanikusok.eletkor %></td>
                 <td class="tg-baqh"><%= botanikusok.elvesztettKesztyuk %></td>
                 <td class="tg-baqh"><%= botanikusok.korabbiAllas %></td>
-                <a class="btn btn-primary" href="/botanikusok/new" name="btnEditBotanikus">Módosítás</a>
-                <a class="btn btn-primary" href="/botanikusok" name="btnDelBotanikus">Törlés</a>
+                <td class="text-right">
+                <a class="btn btn-primary" href="/botanikusok/edit/<%= botanikusok._id %>" name="btnEditBotanikus">Módosítás</a>
+                <a class="btn btn-primary" href="/botanikusok/del/<%= botanikusok._id %>" name="btnDelBotanikus">Törlés</a>
               </tr>
             <%});%>
             </tbody>

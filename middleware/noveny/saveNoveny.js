@@ -25,7 +25,6 @@ module.exports = function (objectrepository) {
         noveny.nev = req.body.nev;
         noveny.viragIze = req.body.viragIze;
         noveny.viragzasIdeje = req.body.viragzasIdeje;
-        // noveny._botanikus = res.locals.botanikus._id; // mindig undefined mert a res.locals üres
 
         noveny.save().then(() => {
             return res.redirect(`/novenyek`);

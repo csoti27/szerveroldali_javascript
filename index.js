@@ -49,6 +49,7 @@ app.get('/novenyek',
 
 
 app.use('/botanikusok/new',
+    getBotanikus(objRepo),
     saveBotanikus(objRepo),
     renderMW(objRepo, 'ujBotanikus'));
 

@@ -7,17 +7,15 @@
  const requireOption = require('../common/requireOption');
 
  module.exports = function (objectrepository) {
-    return function(req, res, next) {
+    const BotanikusModel = requireOption(objectrepository, 'BotanikusModel');
+
+    return async(req, res, next) =>{
         if (typeof res.locals.botanikus === 'undefined') {
             return next();
         }
-
-        res.locals.botanikus.remove(err => {
-            if (err) {
-                return next(err);
-            }
+        const botanikus = await BotanikusModel.findByIdAndRemove(req.params.botanikusid);
 
             return res.redirect('/botanikusok');
-        });
+        };
     };
- };
+ 

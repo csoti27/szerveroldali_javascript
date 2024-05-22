@@ -10,14 +10,19 @@
     
     const BotanikusModel = requireOption(objectrepository, 'BotanikusModel');
 
-    return function (req, res, next) {
-        BotanikusModel.findOne({_id: req.params.botanikusID},(err, result) => {
-            if (err || !result) {
-              return next(err);
+    return async (req, res, next) =>{
+      const botanikus = await BotanikusModel.findById(req.params.botanikusid);
+      
+        try{if (botanikus) {
+              res.locals.botanikus = botanikus;
+            }else{
+              res.locals.botanikus = null;
             }
+            next();
+          }
+        catch(err) {
+            next(err);
+        };
+};
 
-            res.locals.botanikus =result;
-            return next();
-        });
-     };
  };

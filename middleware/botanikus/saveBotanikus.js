@@ -10,9 +10,8 @@ const requireOption = require('../common/requireOption');
 module.exports = function (objectrepository) {
     const BotanikusModel = requireOption(objectrepository, 'BotanikusModel');
 
-    return function (req, res, next) {
+    return async (req, res, next) =>{
 
-        console.log(req.body);
         if (
             typeof req.body.nev === 'undefined' ||
             typeof req.body.eletkor === 'undefined' ||
@@ -20,17 +19,25 @@ module.exports = function (objectrepository) {
             typeof req.body.korabbiAllas === 'undefined'
 
         ) {
-            console.log('next');
             return next();
         }
 
 
         const nev = req.body.nev;
-        const eletkor = req.body.eletkor;
+        var eletkor
+        if(!isNaN(req.body.eletkor)){
+             eletkor = req.body.eletkor;
+        }else{
+            //Aki rossz adatot ad meg pórul jár
+             eletkor = 0;
+        }
         const elvesztettKesztyuk = req.body.elvesztettKesztyuk;
         const korabbiAllas = req.body.korabbiAllas;
 
-        const botanikus = new BotanikusModel();
+        var botanikus = await BotanikusModel.findById(req.params.botanikusid);
+        if(!botanikus){
+            botanikus = new BotanikusModel();
+        }
         botanikus.nev = nev;
         botanikus.eletkor = eletkor;
         botanikus.elvesztettKesztyuk = elvesztettKesztyuk;

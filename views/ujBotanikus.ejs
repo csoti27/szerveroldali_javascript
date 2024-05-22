@@ -13,20 +13,22 @@
 </head>
 <body>
 
-<h1>Új botanikus felvétele</h1>
+<h1><%= botanikus ? "Botanikus módosítása" : "Új botanikus felvétele" %></h1>
 
-<form method="post" action="/botanikusok/new">
+<form method="post" action="<%= botanikus ? '/botanikusok/edit/' + botanikus._id : '/botanikusok/new' %>">
     <label for="nev">Név:</label>
-    <input type="text" id="nev" name="nev"><br><br>
+    <input type="text" id="nev" name="nev" value="<%= botanikus ? botanikus.nev : '' %>"><br><br>
+
     <label for="eletkor">Életkor:</label>
-    <input type="text" id="eletkor" name="eletkor"><br><br>
+    <input type="text" id="eletkor" name="eletkor" value="<%= botanikus ? botanikus.eletkor : '' %>"><br><br>
 
     <label for="elvesztettKesztyuk">Elvesztett kesztyűk:</label>
-    <input type="text" id="elvesztettKesztyuk" name="elvesztettKesztyuk"><br><br>
-    <label for="korabbiAllas">Korábbi Állás:</label>
-    <input type="text" id="korabbiAllas" name="korabbiAllas"><br><br>
-    <input type="submit" value="Submit">
+    <input type="text" id="elvesztettKesztyuk" name="elvesztettKesztyuk" value="<%= botanikus ? botanikus.elvesztettKesztyuk : '' %>"><br><br>
 
+    <label for="korabbiAllas">Korábbi Állás:</label>
+    <input type="text" id="korabbiAllas" name="korabbiAllas" value="<%= botanikus ? botanikus.korabbiAllas : '' %>"><br><br>
+
+    <input type="submit" value='Submit'>
 </form>
 </div>
 <div>

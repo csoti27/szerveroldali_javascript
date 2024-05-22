@@ -1,8 +1,5 @@
 /**
- * Load a dependency from an object repository
- * @param objectRepository object repository
- * @param propertyName dependency name
- * @returns {*}
+ * Függőségek egyszerű betöltésére szolgál
  */
 function requireOption(objectRepository, propertyName) {
     if (objectRepository && objectRepository[propertyName]) {
