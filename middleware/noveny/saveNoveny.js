@@ -31,11 +31,10 @@ module.exports = function (objectrepository) {
         //megkeresni ilyen nevű botanikust, majd azt beállítani attributeként
         const botanikusNev = req.body.botanikus;
         var botanikus = await findByAttribute(BotanikusModel,'nev',botanikusNev);
-        console.log(botanikus);
         if(!botanikus){
             botanikus = new BotanikusModel();
         }
-
+        console.log(botanikus);
         noveny.save().then(() => {
             return res.redirect(`/novenyek`);
         }).catch(err => {
