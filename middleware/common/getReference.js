@@ -1,7 +1,5 @@
 /**
- * param: novenyID (int)
- * Visszaadja az adott ID-hez tartozó növényt
- * Ha nincs növény ilyen ID-vel akkor átirányít a főoldalra
+ * segít a megadott entitás(esetemben noveny) referenciaként tárolt elemeit kigyűjteni db-ből
  */
 
 const requireOption = require('../common/requireOption');

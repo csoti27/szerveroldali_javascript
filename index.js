@@ -62,7 +62,16 @@ app.get('/novenyek/del/:novenyid',
 
 app.get('/novenyek',
     getNovenyek(objRepo),
-    renderMW(objRepo, 'novenyek'));
+
+    
+    /*
+        novenyek = await NovenyModel.find().populate('botanikus');
+    res.json(novenyek);
+    console.log(`Novenyek: ${novenyek}`);
+    console.log('Novenyek:', novenyek); // Log the retrieved novenyek
+    */
+    renderMW(objRepo, 'novenyek')
+);
 
 
 app.use('/botanikusok/new',
@@ -88,4 +97,3 @@ app.listen(3000, () => {
     console.log('Server started at http://localhost:3000');
 });
 
-  

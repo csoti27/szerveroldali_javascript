@@ -10,7 +10,7 @@ module.exports = function (objectrepository) {
     const NovenyModel = requireOption(objectrepository, 'NovenyModel');
 
     return async (req, res, next) => {
-        if (typeof res.locals.noveny === 'undefined') {
+        if (typeof res.locals.novenyek === 'undefined') {
             return next();
         }
 

@@ -1,7 +1,7 @@
 const Schema = require('mongoose').Schema;
 const db = require('../config/db');
 
-const Noveny = db.model('Noveny', {
+const NovenySchema = new Schema({
     nev: String,
     _botanikus: {
         type: Schema.Types.ObjectId,
@@ -9,7 +9,9 @@ const Noveny = db.model('Noveny', {
     },
     viragIze: String,
     viragzasIdeje: String
-    
 });
+
+const Noveny = db.model('Noveny', NovenySchema);
+
 
 module.exports = Noveny;

@@ -29,12 +29,16 @@ module.exports = function (objectrepository) {
         noveny.viragIze = req.body.viragIze;
         noveny.viragzasIdeje = req.body.viragzasIdeje;
         //megkeresni ilyen nevű botanikust, majd azt beállítani attributeként
-        const botanikusNev = req.body.botanikus;
-        var botanikus = await findByAttribute(BotanikusModel,'nev',botanikusNev);
+        var botanikus = await findByAttribute(BotanikusModel,'nev', req.body.botanikus);
+        console.log(`Botanikus: ${botanikus}`);
         if(!botanikus){
             botanikus = new BotanikusModel();
+            botanikus.nev = req.body.botanikus;
+            await botanikus.save();
         }
-        console.log(botanikus);
+        noveny._botanikus=botanikus._id;
+        console.log(`Noveny: ${noveny}`);
+
         noveny.save().then(() => {
             return res.redirect(`/novenyek`);
         }).catch(err => {

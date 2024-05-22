@@ -1,12 +1,13 @@
 const Schema = require('mongoose').Schema;
 const db = require('../config/db');
 
-const Botanikus = db.model('Botanikus', {
+const botanikusSchema = new Schema({
     nev: String,
     eletkor: Number,
     elvesztettKesztyuk: String,
     korabbiAllas: String
-    
 });
+
+const Botanikus = db.model('Botanikus', botanikusSchema);
 
 module.exports = Botanikus;
