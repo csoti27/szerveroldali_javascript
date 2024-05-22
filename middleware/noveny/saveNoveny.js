@@ -6,12 +6,13 @@
  */
 
 const requireOption = require('../common/requireOption');
+const findByAttribute = require('../../models/findByAttribute');
 
 module.exports = function (objectrepository) {
     const NovenyModel = requireOption(objectrepository, 'NovenyModel');
+    const BotanikusModel = requireOption(objectrepository, 'BotanikusModel');
 
-    return function (req, res, next) {
-        console.log(req.body);
+    return async (req, res, next) =>{
         if (
             typeof req.body.nev === 'undefined' ||
             typeof req.body.viragIze === 'undefined' ||
@@ -19,12 +20,21 @@ module.exports = function (objectrepository) {
         ) {
             return next();
         }
-
-        const noveny = new NovenyModel();
+        var noveny = await NovenyModel.findById(req.params.novenyid);
+        if(!noveny){
+            noveny = new NovenyModel();
+        }
 
         noveny.nev = req.body.nev;
         noveny.viragIze = req.body.viragIze;
         noveny.viragzasIdeje = req.body.viragzasIdeje;
+        //megkeresni ilyen nevű botanikust, majd azt beállítani attributeként
+        const botanikusNev = req.body.botanikus;
+        var botanikus = await findByAttribute(BotanikusModel,'nev',botanikusNev);
+        console.log(botanikus);
+        if(!botanikus){
+            botanikus = new BotanikusModel();
+        }
 
         noveny.save().then(() => {
             return res.redirect(`/novenyek`);

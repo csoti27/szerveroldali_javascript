@@ -22,26 +22,21 @@ module.exports = function (objectrepository) {
             return next();
         }
 
-
-        const nev = req.body.nev;
-        var eletkor
-        if(!isNaN(req.body.eletkor)){
-             eletkor = req.body.eletkor;
-        }else{
-            //Aki rossz adatot ad meg pórul jár
-             eletkor = 0;
-        }
-        const elvesztettKesztyuk = req.body.elvesztettKesztyuk;
-        const korabbiAllas = req.body.korabbiAllas;
-
         var botanikus = await BotanikusModel.findById(req.params.botanikusid);
         if(!botanikus){
             botanikus = new BotanikusModel();
         }
-        botanikus.nev = nev;
-        botanikus.eletkor = eletkor;
-        botanikus.elvesztettKesztyuk = elvesztettKesztyuk;
-        botanikus.korabbiAllas = korabbiAllas;
+        
+        botanikus.nev = req.body.nev;
+        var eletkor
+        if(!isNaN(req.body.eletkor)){
+            botanikus.eletkor = req.body.eletkor;
+        }else{
+            //Aki rossz adatot ad meg pórul jár
+            botanikus.eletkor = 0;
+        }
+        botanikus.elvesztettKesztyuk = req.body.elvesztettKesztyuk;
+        botanikus.korabbiAllas = req.body.korabbiAllas;
 
         botanikus.save().then(() => {
             return res.redirect('/botanikusok');

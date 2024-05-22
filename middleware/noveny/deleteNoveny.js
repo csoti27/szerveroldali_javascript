@@ -6,18 +6,16 @@
 
 const requireOption = require('../common/requireOption');
 
- module.exports = function (objectrepository) {
-    return function(req, res, next) {
+module.exports = function (objectrepository) {
+    const NovenyModel = requireOption(objectrepository, 'NovenyModel');
+
+    return async (req, res, next) => {
         if (typeof res.locals.noveny === 'undefined') {
             return next();
         }
 
-        res.locals.noveny.remove(err => {
-            if (err) {
-                return next(err);
-            }
+        const noveny = await NovenyModel.findByIdAndRemove(req.params.novenyid);
 
-            return res.redirect('/novenyek');
-        });
+        return res.redirect('/novenyek');
     };
- };
+};
