@@ -10,7 +10,6 @@ module.exports = function (objectrepository) {
     const NovenyModel = requireOption(objectrepository, 'NovenyModel');
     return async (req, res, next) => {
         const noveny = await NovenyModel.findById(req.params.novenyid);
-        console.log(req.params.novenyid);
         try {
             if (noveny) {
                 res.locals.novenyek = noveny;

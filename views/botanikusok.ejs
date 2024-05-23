@@ -26,16 +26,16 @@
             </thead>
             <tbody>
               <%
-                botanikusok.forEach(function(botanikusok) {
+                botanikusok.forEach(function(botanikus) {
               %>
               <tr>
-                <td class="tg-baqh"><%= botanikusok.nev %></td>
-                <td class="tg-baqh"><%= botanikusok.eletkor %></td>
-                <td class="tg-baqh"><%= botanikusok.elvesztettKesztyuk %></td>
-                <td class="tg-baqh"><%= botanikusok.korabbiAllas %></td>
+                <td class="tg-baqh"><%= botanikus.nev %></td>
+                <td class="tg-baqh"><%= botanikus.eletkor %></td>
+                <td class="tg-baqh"><%= botanikus.elvesztettKesztyuk %></td>
+                <td class="tg-baqh"><%= botanikus.korabbiAllas %></td>
                 <td class="text-right">
-                <a class="btn btn-primary" href="/botanikusok/edit/<%= botanikusok._id %>" name="btnEditBotanikus">Módosítás</a>
-                <a class="btn btn-primary" href="/botanikusok/del/<%= botanikusok._id %>" name="btnDelBotanikus">Törlés</a>
+                <a class="btn btn-primary" href="/botanikusok/edit/<%= botanikus._id %>" name="btnEditBotanikus">Módosítás</a>
+                <a class="btn btn-primary" href="/botanikusok/del/<%= botanikus._id %>" name="btnDelBotanikus">Törlés</a>
               </tr>
             <%});%>
             </tbody>

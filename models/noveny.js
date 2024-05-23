@@ -3,6 +3,7 @@ const db = require('../config/db');
 
 const Noveny = db.model('Noveny', {
     nev: String,
+    botanikusNev: String,
     _botanikus: {
         type: Schema.Types.ObjectId,
         ref: 'Botanikus'

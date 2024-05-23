@@ -31,20 +31,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post('/findBotanikusByName', async (req, res, next) => {
-    try {
-        const { nev } = req.body;
-        const botanikus = await findByAttribute(BotanikusModel, 'nev', nev);
-        if (botanikus) {
-            res.status(200).json(botanikus);
-        } else {
-            res.status(404).send('Botanikus not found');
-        }
-    } catch (error) {
-        next(error);
-    }
-});
-
 app.use('/novenyek/new',
     getNoveny(objRepo),
     saveNoveny(objRepo),

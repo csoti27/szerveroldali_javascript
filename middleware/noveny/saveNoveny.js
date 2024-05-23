@@ -33,8 +33,11 @@ module.exports = function (objectrepository) {
         var botanikus = await findByAttribute(BotanikusModel,'nev',botanikusNev);
         if(!botanikus){
             botanikus = new BotanikusModel();
+            botanikus.nev=req.body.botanikus;
+            await botanikus.save();
         }
-        console.log(botanikus);
+        noveny.botanikusNev=req.body.botanikus;
+        
         noveny.save().then(() => {
             return res.redirect(`/novenyek`);
         }).catch(err => {

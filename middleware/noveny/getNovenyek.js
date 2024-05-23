@@ -8,8 +8,6 @@ module.exports = function (objectrepository) {
     const NovenyModel = requireOption(objectrepository, 'NovenyModel');
 
     return function (req, res, next) {
-        console.log(res);
-
         NovenyModel.find({})
             .then(noveny => {
                 res.locals.novenyek = noveny;
