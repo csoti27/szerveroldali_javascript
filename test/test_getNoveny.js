@@ -6,14 +6,14 @@ describe('getNoveny middleware ', function () {
   it('should return noveny', function (done) {
     var req = {};
      var res = { 
-        locals: {novenyModel: 'noveny'} 
+        locals: {} 
     };
     var fakeNovenyModel = { find: function (some, cb) {
         cb(undefined, 'noveny')
       } 
     };
     getNovenyMW({
-      novenyModel: fakeNovenyModel
+        NovenyModel: fakeNovenyModel
     })(req, res, function (err) {
       expect(res.locals.novenyek).to.eql('noveny');
       expect(err).to.eql(undefined);
